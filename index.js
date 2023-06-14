@@ -1,9 +1,34 @@
-/**
- * @format
- */
+import {Navigation} from 'react-native-navigation';
+import Hello from './src/screens/Hello';
+import SideMenu from './src/components/SideMenu';
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+Navigation.registerComponent('Hello', () => Hello);
+Navigation.registerComponent('SideMenu', () => SideMenu);
 
-AppRegistry.registerComponent(appName, () => App);
+const mainRoot = {
+  root: {
+    sideMenu: {
+      left: {
+        component: {
+          name: 'SideMenu',
+        },
+      },
+      center: {
+        stack: {
+          id: 'CenterStack',
+          children: [
+            {
+              component: {
+                name: 'Hello',
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
+};
+
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot(mainRoot);
+});
