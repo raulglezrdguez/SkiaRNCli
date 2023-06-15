@@ -7,7 +7,7 @@ import {Canvas, Circle, Group} from '@shopify/react-native-skia';
 interface Props {
   name: string;
 }
-const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
+const Demo: NavigationFunctionComponent<Props> = ({componentId, name}) => {
   const addComponent = useSkiaStore(state => state.addComponent);
   const removeComponent = useSkiaStore(state => state.removeComponent);
   const size = 256;
@@ -17,10 +17,17 @@ const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
     const listener = {
       componentDidAppear: () => {
         console.log('RNN', `componentDidAppear ${componentId}`);
-        addComponent('Hello');
+        addComponent('Demo');
       },
       componentDidDisappear: () => {
         console.log('RNN', `componentDidDisappear ${componentId}`);
+      },
+      navigationButtonPressed({buttonId}: {buttonId: string}) {
+        if (buttonId === 'RNN.back') {
+          console.log('The software back button was pressed!');
+          Navigation.pop('CenterStack');
+          removeComponent('Demo');
+        }
       },
     };
     // Register the listener to all events related to our component
@@ -37,7 +44,7 @@ const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
   return (
     <>
       <Text>
-        Hello {componentId} - {name}
+        Demo {componentId} - {name}
       </Text>
       <Canvas style={styles.canvas}>
         <Group blendMode="multiply">
@@ -49,15 +56,18 @@ const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
     </>
   );
 };
-Hello.options = {
+Demo.options = {
   topBar: {
     title: {
-      text: 'Hello',
+      text: 'Demo',
+    },
+    backButton: {
+      popStackOnPress: false,
     },
   },
 };
 
-export default Hello;
+export default Demo;
 
 const styles = StyleSheet.create({
   canvas: {

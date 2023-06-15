@@ -1,8 +1,10 @@
 import {Navigation} from 'react-native-navigation';
 import Hello from './src/screens/Hello';
 import SideMenu from './src/components/SideMenu';
+import Demo from './src/screens/Demo';
 
 Navigation.registerComponent('Hello', () => Hello);
+Navigation.registerComponent('Demo', () => Demo);
 Navigation.registerComponent('SideMenu', () => SideMenu);
 
 const mainRoot = {

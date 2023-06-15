@@ -8,14 +8,14 @@ interface Props {
 }
 
 const SideMenu: NavigationFunctionComponent<Props> = ({componentId, name}) => {
-  const component = useSkiaStore(state => state.component);
-
+  const components = useSkiaStore(state => state.components);
+  console.log(components);
   return (
     <View style={styles.root}>
       <Text>
         SideMenu {componentId} - {name}
       </Text>
-      {component !== 'Hello' && (
+      {!components.includes('Hello') && (
         <Button
           title="Hello"
           color="#710ce3"
@@ -23,6 +23,26 @@ const SideMenu: NavigationFunctionComponent<Props> = ({componentId, name}) => {
             Navigation.push('CenterStack', {
               component: {
                 name: 'Hello',
+                options: {
+                  sideMenu: {
+                    left: {
+                      visible: false,
+                    },
+                  },
+                },
+              },
+            })
+          }
+        />
+      )}
+      {!components.includes('Demo') && (
+        <Button
+          title="Demo"
+          color="#710ce3"
+          onPress={() =>
+            Navigation.push('CenterStack', {
+              component: {
+                name: 'Demo',
                 options: {
                   sideMenu: {
                     left: {

@@ -3,7 +3,7 @@
 buildscript {
     ext {
         RNNKotlinVersion = "1.5.31"
-        buildToolsVersion = "31.0.0"
+        buildToolsVersion = "33.0.0"
         minSdkVersion = 21
         compileSdkVersion = 31
         targetSdkVersion = 31
@@ -17,8 +17,13 @@ buildscript {
         }
     }
     repositories {
-        google()
-        mavenCentral()
+        google {
+    url 'https://maven.aliyun.com/repository/google'
+}
+mavenCentral {
+    url 'https://maven.aliyun.com/repository/central'
+}
+        
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$RNNKotlinVersion"
@@ -47,7 +52,10 @@ allprojects {
                 excludeGroup "com.facebook.react"
             }
         }
-        google()
+        google {
+    url 'https://maven.aliyun.com/repository/google'
+}
+
         maven { url 'https://www.jitpack.io' }
     }
 }
