@@ -12,13 +12,14 @@ import {
   SweepGradient,
   vec,
 } from '@shopify/react-native-skia';
+import useNavigation from '../hooks/useNavigation';
+import {LOGO_SCREEN} from '../consts';
 
 interface Props {
   name: string;
 }
 const Logo: NavigationFunctionComponent<Props> = ({componentId}) => {
-  const addComponent = useSkiaStore(state => state.addComponent);
-  const removeComponent = useSkiaStore(state => state.removeComponent);
+  useNavigation(LOGO_SCREEN, componentId);
 
   const {width, height} = useWindowDimensions();
   const center = {x: width / 2, y: height / 2};
@@ -30,34 +31,6 @@ const Logo: NavigationFunctionComponent<Props> = ({componentId}) => {
   };
   const r = 25;
   const color = 'lightblue';
-
-  useEffect(() => {
-    const listener = {
-      componentDidAppear: () => {
-        console.log('RNN', `componentDidAppear ${componentId}`);
-        addComponent('Logo');
-      },
-      componentDidDisappear: () => {
-        console.log('RNN', `componentDidDisappear ${componentId}`);
-      },
-      navigationButtonPressed({buttonId}: {buttonId: string}) {
-        if (buttonId === 'RNN.back') {
-          console.log('The software back button was pressed!');
-          Navigation.pop('CenterStack');
-          removeComponent('Logo');
-        }
-      },
-    };
-    // Register the listener to all events related to our component
-    const unsubscribe = Navigation.events().registerComponentListener(
-      listener,
-      componentId,
-    );
-    return () => {
-      // Make sure to unregister the listener during cleanup
-      unsubscribe.remove();
-    };
-  }, [componentId, addComponent, removeComponent]);
 
   return (
     <Canvas style={styles.canvas}>
@@ -90,7 +63,7 @@ const Logo: NavigationFunctionComponent<Props> = ({componentId}) => {
 Logo.options = {
   topBar: {
     title: {
-      text: 'Logo',
+      text: LOGO_SCREEN,
     },
     backButton: {
       popStackOnPress: false,

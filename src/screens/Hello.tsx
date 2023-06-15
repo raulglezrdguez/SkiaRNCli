@@ -1,38 +1,17 @@
 import {StyleSheet, Text} from 'react-native';
-import React, {useEffect} from 'react';
-import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
-import {useSkiaStore} from '../store/store';
+import React from 'react';
+import {NavigationFunctionComponent} from 'react-native-navigation';
 import {Canvas, Circle, Group} from '@shopify/react-native-skia';
+import useNavigation from '../hooks/useNavigation';
+import {HELLO_SCREEN} from '../consts';
 
 interface Props {
   name: string;
 }
 const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
-  const addComponent = useSkiaStore(state => state.addComponent);
-  const removeComponent = useSkiaStore(state => state.removeComponent);
+  useNavigation(HELLO_SCREEN, componentId);
   const size = 256;
   const r = size * 0.33;
-
-  useEffect(() => {
-    const listener = {
-      componentDidAppear: () => {
-        console.log('RNN', `componentDidAppear ${componentId}`);
-        addComponent('Hello');
-      },
-      componentDidDisappear: () => {
-        console.log('RNN', `componentDidDisappear ${componentId}`);
-      },
-    };
-    // Register the listener to all events related to our component
-    const unsubscribe = Navigation.events().registerComponentListener(
-      listener,
-      componentId,
-    );
-    return () => {
-      // Make sure to unregister the listener during cleanup
-      unsubscribe.remove();
-    };
-  }, [componentId, addComponent, removeComponent]);
 
   return (
     <>
@@ -52,7 +31,7 @@ const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
 Hello.options = {
   topBar: {
     title: {
-      text: 'Hello',
+      text: HELLO_SCREEN,
     },
   },
 };
