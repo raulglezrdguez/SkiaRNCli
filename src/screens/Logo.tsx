@@ -1,7 +1,6 @@
 import {StyleSheet, useWindowDimensions} from 'react-native';
-import React, {useEffect} from 'react';
-import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
-import {useSkiaStore} from '../store/store';
+import React from 'react';
+import {NavigationFunctionComponent} from 'react-native-navigation';
 import {
   BlurMask,
   Canvas,

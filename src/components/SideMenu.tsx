@@ -2,7 +2,7 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import {useSkiaStore} from '../store/store';
-import {HELLO_SCREEN, IMAGE_SCREEN, LOGO_SCREEN} from '../consts';
+import {CARDS_SCREEN, HELLO_SCREEN, IMAGE_SCREEN, LOGO_SCREEN} from '../consts';
 
 interface Props {
   name: string;
@@ -64,6 +64,26 @@ const SideMenu: NavigationFunctionComponent<Props> = ({componentId, name}) => {
             Navigation.push('CenterStack', {
               component: {
                 name: IMAGE_SCREEN,
+                options: {
+                  sideMenu: {
+                    left: {
+                      visible: false,
+                    },
+                  },
+                },
+              },
+            })
+          }
+        />
+      )}
+      {!components.includes(CARDS_SCREEN) && (
+        <Button
+          title={CARDS_SCREEN}
+          color="#710ce3"
+          onPress={() =>
+            Navigation.push('CenterStack', {
+              component: {
+                name: CARDS_SCREEN,
                 options: {
                   sideMenu: {
                     left: {

@@ -1,9 +1,11 @@
-import {StyleSheet, Text} from 'react-native';
+import {Dimensions, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {NavigationFunctionComponent} from 'react-native-navigation';
 import {Canvas, Circle, Group} from '@shopify/react-native-skia';
 import useNavigation from '../hooks/useNavigation';
 import {HELLO_SCREEN} from '../consts';
+
+const {width, height} = Dimensions.get('window');
 
 interface Props {
   name: string;
@@ -19,7 +21,12 @@ const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
         Hello {componentId} - {name}
       </Text>
       <Canvas style={styles.canvas}>
-        <Group blendMode="multiply">
+        <Group
+          blendMode="multiply"
+          transform={[
+            {translateX: (width - size) / 2},
+            {translateY: (height - size) / 2},
+          ]}>
           <Circle cx={r} cy={r} r={r} color="cyan" />
           <Circle cx={size - r} cy={r} r={r} color="magenta" />
           <Circle cx={size / 2} cy={size - r} r={r} color="yellow" />
