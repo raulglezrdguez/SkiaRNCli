@@ -8,14 +8,28 @@ interface Props {
 
 const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
   return (
-    <View>
+    <View style={styles.root}>
       <Text>
-        Hello {componentId} {name}
+        Hello {componentId} - {name}
       </Text>
     </View>
   );
 };
+Hello.options = {
+  topBar: {
+    title: {
+      text: 'Hello',
+    },
+  },
+};
 
 export default Hello;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'whitesmoke',
+  },
+});
