@@ -1,12 +1,18 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationFunctionComponent} from 'react-native-navigation';
+import {useSkiaStore} from '../store/store';
 
 interface Props {
   name: string;
 }
-
 const Hello: NavigationFunctionComponent<Props> = ({componentId, name}) => {
+  const setComponent = useSkiaStore(state => state.setComponent);
+
+  useEffect(() => {
+    setComponent('Hello');
+  }, [setComponent]);
+
   return (
     <View style={styles.root}>
       <Text>
