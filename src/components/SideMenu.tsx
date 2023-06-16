@@ -37,64 +37,70 @@ const SideMenu: NavigationFunctionComponent<Props> = ({componentId, name}) => {
         />
       )}
       {!components.includes(LOGO_SCREEN) && (
-        <Button
-          title={LOGO_SCREEN}
-          color="#710ce3"
-          onPress={() =>
-            Navigation.push('CenterStack', {
-              component: {
-                name: LOGO_SCREEN,
-                options: {
-                  sideMenu: {
-                    left: {
-                      visible: false,
+        <View style={styles.separator}>
+          <Button
+            title={LOGO_SCREEN}
+            color="#710ce3"
+            onPress={() =>
+              Navigation.push('CenterStack', {
+                component: {
+                  name: LOGO_SCREEN,
+                  options: {
+                    sideMenu: {
+                      left: {
+                        visible: false,
+                      },
                     },
                   },
                 },
-              },
-            })
-          }
-        />
+              })
+            }
+          />
+        </View>
       )}
       {!components.includes(IMAGE_SCREEN) && (
-        <Button
-          title={IMAGE_SCREEN}
-          color="#710ce3"
-          onPress={() =>
-            Navigation.push('CenterStack', {
-              component: {
-                name: IMAGE_SCREEN,
-                options: {
-                  sideMenu: {
-                    left: {
-                      visible: false,
+        <View style={styles.separator}>
+          <Button
+            title={IMAGE_SCREEN}
+            color="#710ce3"
+            onPress={() =>
+              Navigation.push('CenterStack', {
+                component: {
+                  name: IMAGE_SCREEN,
+                  options: {
+                    sideMenu: {
+                      left: {
+                        visible: false,
+                      },
                     },
                   },
                 },
-              },
-            })
-          }
-        />
+              })
+            }
+          />
+        </View>
       )}
       {!components.includes(CARDS_SCREEN) && (
-        <Button
-          title={CARDS_SCREEN}
-          color="#710ce3"
-          onPress={() =>
-            Navigation.push('CenterStack', {
-              component: {
-                name: CARDS_SCREEN,
-                options: {
-                  sideMenu: {
-                    left: {
-                      visible: false,
+        <View style={styles.separator}>
+          <Button
+            title={CARDS_SCREEN}
+            color="#710ce3"
+            onPress={() =>
+              Navigation.push('CenterStack', {
+                component: {
+                  name: CARDS_SCREEN,
+                  options: {
+                    sideMenu: {
+                      left: {
+                        visible: false,
+                      },
                     },
                   },
                 },
-              },
-            })
-          }
-        />
+              })
+            }
+          />
+        </View>
       )}
     </View>
   );
@@ -108,5 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'whitesmoke',
+  },
+  separator: {
+    margin: 10,
   },
 });
