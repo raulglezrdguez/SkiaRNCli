@@ -1,29 +1,25 @@
-# Cuidandonos
+# Skia react native cli
 
-React Native app for the book "Cuidandonos para cuidar mejor".
+App developed with react native navigation, zustand and @shopify/react-native-skia.
 
-Images
+# Images
 
-## Book first page
+## Side menu
 
-![first page](/screenshots/Screenshot_20220128-162756.png)
+![side menu](/screenshots/Screen%20Shot%202023-06-16%20at%2008.19.21.jpg)
 
-## User preferences and book content
+## Hello skia
 
-![preferences and content](/screenshots/Screenshot_20220128-162811.png)
+![hello skia](/screenshots/Screen%20Shot%202023-06-16%20at%2008.12.42.jpg)
 
-## Book content
+## React Logo
 
-![book content](/screenshots/Screenshot_20220128-162839.png)
+![react logo](/screenshots/Screen%20Shot%202023-06-16%20at%2008.19.43.jpg)
 
-## Key messages
+## Images
 
-![messages](/screenshots/Screenshot_20220128-162920.png)
+![images](/screenshots/Screen%20Shot%202023-06-16%20at%2008.22.21.jpg)
 
-## Svg graphics
+## Card list
 
-![graphics](/screenshots/Screenshot_20220128-163039.png)
-
-## Book interactivity
-
-![interactivity](/screenshots/Screenshot_20220128-163124.png)
+![card list](/screenshots/Screen%20Shot%202023-06-16%20at%2008.23.04.jpg)
