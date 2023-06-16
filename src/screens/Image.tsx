@@ -1,4 +1,5 @@
 import {
+  Button,
   Dimensions,
   FlatList,
   SafeAreaView,
@@ -7,7 +8,17 @@ import {
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import {NavigationFunctionComponent} from 'react-native-navigation';
-import {Canvas, ColorMatrix, Image, useImage} from '@shopify/react-native-skia';
+import {
+  BackdropBlur,
+  Canvas,
+  ColorMatrix,
+  Fill,
+  Image,
+  rect,
+  rrect,
+  useImage,
+  useTiming,
+} from '@shopify/react-native-skia';
 import useNavigation from '../hooks/useNavigation';
 import {IMAGE_SCREEN} from '../consts';
 
@@ -45,6 +56,9 @@ const ImageScreen: NavigationFunctionComponent<Props> = ({componentId}) => {
     [],
   );
   const image = useImage(require('../../assets/car.jpg'));
+  const blurClipPath = rrect(rect(24, height / 4, width - 80, 100), 12, 12);
+  const [toggled, setToggled] = useState(false);
+  const blur = useTiming(toggled ? 10 : 0, {duration: 2000});
 
   return (
     <SafeAreaView>
@@ -58,7 +72,11 @@ const ImageScreen: NavigationFunctionComponent<Props> = ({componentId}) => {
           width={width - 32}
           height={height - 300}
         />
+        <BackdropBlur blur={blur} clip={blurClipPath}>
+          <Fill color={'rgba(122, 122, 122, 0.2)'} />
+        </BackdropBlur>
       </Canvas>
+      <Button title="Toggle effect" onPress={() => setToggled(p => !p)} />
       <FlatList
         numColumns={3}
         data={Object.keys(filters)}
